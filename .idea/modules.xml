@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/modules/proton/Proton/Proton.iml" filepath="$PROJECT_DIR$/modules/proton/Proton/Proton.iml" />
       <module fileurl="file://$PROJECT_DIR$/TestProject.iml" filepath="$PROJECT_DIR$/TestProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/modules/modules.iml" filepath="$PROJECT_DIR$/modules/modules.iml" />
-      <module fileurl="file://$PROJECT_DIR$/modules/proton/proton.iml" filepath="$PROJECT_DIR$/modules/proton/proton.iml" />
       <module fileurl="file://$PROJECT_DIR$/modules/volley/volley.iml" filepath="$PROJECT_DIR$/modules/volley/volley.iml" />
     </modules>
   </component>
