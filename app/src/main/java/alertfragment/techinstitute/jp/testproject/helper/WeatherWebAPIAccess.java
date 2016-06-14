@@ -14,12 +14,16 @@ public class WeatherWebAPIAccess {
 
     /***
      *
-     * @param location 広範囲な地域を示す文字列(例：東京)
+     * @param location 都道府県を示す文字列(例：東京都)
      * @param point locationに含まれる特定の地域を示す文字列(例：大田区)
      * @return
      */
     public static JSONObject fetchPointWeatherOfJSON(@NonNull final String location,
                                                      @NonNull final String point) {
+
+
+
+
         return new JSONObject();
 
     }
