@@ -17,7 +17,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
+import alertfragment.techinstitute.jp.testproject.component.DaggerPrefecturesMapComponent;
+import alertfragment.techinstitute.jp.testproject.dao.PrefecturesMap;
+import alertfragment.techinstitute.jp.testproject.entity.PrefecturesEntity;
+
 public class MainActivity extends AppCompatActivity {
+
+    @Inject
+    PrefecturesMap mPrefecturesMap;
 
     private enum KU {
         OTAKU("大田区");
@@ -37,7 +48,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.weatherWebAPIAccess((TextView) findViewById(R.id.hello));
+//        this.weatherWebAPIAccess((TextView) findViewById(R.id.hello));
+
+        mPrefecturesMap = DaggerPrefecturesMapComponent.create().maker();
+        List<PrefecturesEntity> prefecturesEntities = mPrefecturesMap.selectPrefectures("mock");
+        TextView t1 = (TextView) findViewById(R.id.hello);
+        if (t1 != null) {
+            t1.setText(prefecturesEntities.get(0).getPrefecture());
+        }
     }
 
 
