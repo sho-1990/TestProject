@@ -1,9 +1,12 @@
 package alertfragment.techinstitute.jp.testproject;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTabHost;
 import android.util.Log;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -24,11 +27,13 @@ import javax.inject.Inject;
 import alertfragment.techinstitute.jp.testproject.component.DaggerPrefecturesMapComponent;
 import alertfragment.techinstitute.jp.testproject.dao.PrefecturesMap;
 import alertfragment.techinstitute.jp.testproject.entity.PrefecturesEntity;
+import layout.fragments.TabFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity implements TabFragment.OnFragmentInteractionListener, TabHost.OnTabChangeListener {
 
     @Inject
     PrefecturesMap mPrefecturesMap;
+
 
     private enum KU {
         OTAKU("大田区");
@@ -48,6 +53,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FragmentTabHost tabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        if (tabHost != null) {
+            tabHost.setup(this, getSupportFragmentManager(), R.id.honshu);
+
+            TabHost.TabSpec tabSpec1, tabSpec2;
+            tabSpec1 = tabHost.newTabSpec("tab1");
+            tabSpec1.setIndicator("tab1");
+            tabHost.addTab(tabSpec1, TabFragment.class, null);
+
+            tabSpec2 = tabHost.newTabSpec("tab2");
+            tabSpec2.setIndicator("tab2");
+            tabHost.addTab(tabSpec2, TabFragment.class, null);
+
+            tabHost.setOnTabChangedListener(this);
+        }
+
 //        this.weatherWebAPIAccess((TextView) findViewById(R.id.hello));
 
         mPrefecturesMap = DaggerPrefecturesMapComponent.create().maker();
@@ -58,6 +80,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    public void onTabChanged(String tabId) {
+        Log.d("onTabChanged", "tabId: " + tabId);
+
+    }
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        Log.d("onTabChanged", "uri: " + uri);
+    }
 
     /**
      * 天気予報WebAPIを呼び出し,
