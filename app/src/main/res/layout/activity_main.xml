@@ -4,30 +4,22 @@
     android:id="@android:id/tabhost"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/hello"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <TabWidget
-            android:id="@android:id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="0dp"
-            android:layout_height="0dp"/>
-        <FrameLayout
+            android:layout_height="0dp"
+            android:layout_weight="0"/>
+        <include
             android:id="@+id/honshu"
-            android:layout_width="0dp"
-            android:layout_height="1dp"/>
+            layout="@layout/fragment_tab"/>
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
     </LinearLayout>
-
 </android.support.v4.app.FragmentTabHost>
