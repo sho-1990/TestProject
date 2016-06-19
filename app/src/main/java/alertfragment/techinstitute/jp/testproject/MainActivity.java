@@ -20,13 +20,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
-import alertfragment.techinstitute.jp.testproject.component.DaggerPrefecturesMapComponent;
 import alertfragment.techinstitute.jp.testproject.dao.PrefecturesMap;
-import alertfragment.techinstitute.jp.testproject.entity.PrefecturesEntity;
 import layout.fragments.TabFragment;
 
 public class MainActivity extends FragmentActivity implements TabFragment.OnFragmentInteractionListener, TabHost.OnTabChangeListener {
@@ -56,28 +52,28 @@ public class MainActivity extends FragmentActivity implements TabFragment.OnFrag
 
         FragmentTabHost tabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         if (tabHost != null) {
-            tabHost.setup(this, getSupportFragmentManager(), R.id.honshu);
+            tabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
-            TabHost.TabSpec tabSpec1, tabSpec2;
-            tabSpec1 = tabHost.newTabSpec("tab1");
-            tabSpec1.setIndicator("tab1");
+            TabHost.TabSpec tabSpec1, tabSpec2, tabSpec3;
+            tabSpec1 = tabHost.newTabSpec("お気に入り");
+            tabSpec1.setIndicator("お気に入り");
             tabHost.addTab(tabSpec1, TabFragment.class, null);
 
-            tabSpec2 = tabHost.newTabSpec("tab2");
-            tabSpec2.setIndicator("tab2");
+            tabSpec2 = tabHost.newTabSpec("本州");
+            tabSpec2.setIndicator("本州");
             tabHost.addTab(tabSpec2, TabFragment.class, null);
+
+            tabSpec3 = tabHost.newTabSpec("九州");
+            tabSpec3.setIndicator("九州");
+            tabHost.addTab(tabSpec3, TabFragment.class, null);
 
             tabHost.setOnTabChangedListener(this);
         }
 
 //        this.weatherWebAPIAccess((TextView) findViewById(R.id.hello));
 
-        mPrefecturesMap = DaggerPrefecturesMapComponent.create().maker();
-        List<PrefecturesEntity> prefecturesEntities = mPrefecturesMap.selectPrefectures("mock");
-        TextView t1 = (TextView) findViewById(R.id.hello);
-        if (t1 != null) {
-            t1.setText(prefecturesEntities.get(0).getPrefecture());
-        }
+//        mPrefecturesMap = DaggerPrefecturesMapComponent.create().maker();
+//        List<PrefecturesEntity> prefecturesEntities = mPrefecturesMap.selectPrefectures("mock");
     }
 
 
